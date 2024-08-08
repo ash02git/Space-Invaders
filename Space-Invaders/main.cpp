@@ -63,8 +63,9 @@ int main()
         sf::Font font;
         font.loadFromFile("assets/fonts/OpenSans.ttf");
         sf::Text text("SFML is Awesome", font, 13);
-        text.setFillColor(sf::Color::White);
+        text.setFillColor(sf::Color::Red);
         rWindow.draw(text);
+
 
         rWindow.display();
     }

@@ -21,6 +21,7 @@ int main()
 
         rWindow.clear(sf::Color::Black);
 
+        /*
         //Drawing a circle
         sf::CircleShape circleObject(50);
         circleObject.setFillColor(sf::Color::Green);
@@ -28,13 +29,17 @@ int main()
         //circleObject.setPosition(rWindow.getSize().x, rWindow.getSize().y);//bottom right
         circleObject.setPosition(0, 0);
         rWindow.draw(circleObject);
+        */
 
+        /*
         sf::RectangleShape rectangleObject;
         rectangleObject.setFillColor(sf::Color::Red);
         rectangleObject.setSize(sf::Vector2f(50,50));
         rectangleObject.setPosition(400, 400);
         rWindow.draw(rectangleObject);
+        */
 
+        /*
         sf::ConvexShape triangleObject;
         triangleObject.setFillColor(sf::Color::Blue);
         triangleObject.setPointCount(3);
@@ -43,6 +48,23 @@ int main()
         triangleObject.setPoint(1, sf::Vector2f(0, 100));
         triangleObject.setPoint(2, sf::Vector2f(100, 0));
         rWindow.draw(triangleObject);
+        */
+
+        sf::Texture outscal_logo;//Texture creation
+        outscal_logo.loadFromFile("assets/textures/outscal_logo.png");
+
+        sf::Sprite logo_sprite;//sprite Creation
+        logo_sprite.setTexture(outscal_logo);
+        logo_sprite.setScale(0.2, 0.2);
+        logo_sprite.setRotation(45);
+        logo_sprite.setPosition(400, 400);
+        rWindow.draw(logo_sprite);
+
+        sf::Font font;
+        font.loadFromFile("assets/fonts/OpenSans.ttf");
+        sf::Text text("SFML is Awesome", font, 13);
+        text.setFillColor(sf::Color::White);
+        rWindow.draw(text);
 
         rWindow.display();
     }

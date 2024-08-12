@@ -1,72 +1,86 @@
 #include <SFML/Graphics.hpp>
+#include <iostream>
+using namespace std;
+
+class Player
+{
+private:
+    int player_score = 0;
+    int health = 100;
+    int movement_speed = 2;
+    sf::Vector2f position = sf::Vector2f(400, 0);
+
+public:
+    sf::Texture p_texture;
+    sf::Sprite p_sprite;
+
+    Player()
+    {
+        
+    }
+
+    int getScore()
+    {
+        return player_score;
+    }
+
+    int setScore(int newScore)
+    {
+        player_score = newScore;
+    }
+
+    void takeDamage()
+    {
+
+    }
+
+    void move()
+    {
+
+    }
+
+    void shootBullets()
+    {
+
+    }
+};
+
 int main()
 {
-    sf::VideoMode vMode = sf::VideoMode(800, 600);//this is to create the length and widht of the window
+    sf::VideoMode videomode = sf::VideoMode(800, 600);
+    sf::RenderWindow window(videomode, "SFML Window");
 
-    sf::RenderWindow rWindow(vMode, "SFML Window");//this is to create the window itself
-    //rWindow.clear(sf::Color::Red);
-    //sf::RenderWindow rWindow(sf::VideoMode::getFullscreenModes()[0], "Fullscreen Window", sf::Style::Fullscreen);//for fullscreen
+    Player player;
 
-    //rWindow.setFramerateLimit(60);//frame rate limiting
-    //window.setPosition(sf::Vector2i(100, 100));// to set the position of the window
-    
-    while (rWindow.isOpen())
+    player.p_texture.loadFromFile("assets/textures/player_ship.png");
+    player.p_sprite.setTexture(player.p_texture);
+    player.p_sprite.setScale(0.3, 0.3);
+
+    while (window.isOpen())
     {
         sf::Event event;
-        while (rWindow.pollEvent(event))
+        while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                rWindow.close();
+                window.close();
         }
 
-        rWindow.clear(sf::Color::Black);
+        //Keyboard Inputs
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        {
+            player.move();
+        }
 
-        /*
-        //Drawing a circle
-        sf::CircleShape circleObject(50);
-        circleObject.setFillColor(sf::Color::Green);
-        //circleObject.setPosition(400,300);//using pixel value
-        //circleObject.setPosition(rWindow.getSize().x, rWindow.getSize().y);//bottom right
-        circleObject.setPosition(0, 0);
-        rWindow.draw(circleObject);
-        */
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        {
+            player.move();
+        }
 
-        /*
-        sf::RectangleShape rectangleObject;
-        rectangleObject.setFillColor(sf::Color::Red);
-        rectangleObject.setSize(sf::Vector2f(50,50));
-        rectangleObject.setPosition(400, 400);
-        rWindow.draw(rectangleObject);
-        */
+        window.clear(sf::Color::Black);
 
-        /*
-        sf::ConvexShape triangleObject;
-        triangleObject.setFillColor(sf::Color::Blue);
-        triangleObject.setPointCount(3);
-        triangleObject.setPosition(200, 400);
-        triangleObject.setPoint(0, sf::Vector2f(100, 100));
-        triangleObject.setPoint(1, sf::Vector2f(0, 100));
-        triangleObject.setPoint(2, sf::Vector2f(100, 0));
-        rWindow.draw(triangleObject);
-        */
+        player.p_sprite.setPosition(player.p_sprite.getPosition());
+        window.draw(player.p_sprite);//drawing the player
 
-        sf::Texture outscal_logo;//Texture creation
-        outscal_logo.loadFromFile("assets/textures/outscal_logo.png");
-
-        sf::Sprite logo_sprite;//sprite Creation
-        logo_sprite.setTexture(outscal_logo);
-        logo_sprite.setScale(0.2, 0.2);
-        logo_sprite.setRotation(45);
-        logo_sprite.setPosition(400, 400);
-        rWindow.draw(logo_sprite);
-
-        sf::Font font;
-        font.loadFromFile("assets/fonts/OpenSans.ttf");
-        sf::Text text("SFML is Awesome", font, 13);
-        text.setFillColor(sf::Color::Red);
-        rWindow.draw(text);
-
-
-        rWindow.display();
+        window.display();
     }
 }

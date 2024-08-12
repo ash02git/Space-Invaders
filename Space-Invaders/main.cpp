@@ -7,8 +7,8 @@ class Player
 private:
     int player_score = 0;
     int health = 100;
-    int movement_speed = 2;
-    sf::Vector2f position = sf::Vector2f(400, 0);
+    int movement_speed = 5;
+    sf::Vector2f position = sf::Vector2f(200,100);
 
 public:
     sf::Texture p_texture;
@@ -19,24 +19,30 @@ public:
         
     }
 
-    int getScore()
+    int getSpeed()
     {
-        return player_score;
+        return movement_speed;
     }
 
-    int setScore(int newScore)
+    int setSpeed(int newSpeed)
     {
-        player_score = newScore;
+        movement_speed = newSpeed;
     }
+
+    sf::Vector2f getPosition()
+    {
+        return position;
+    }
+
 
     void takeDamage()
     {
 
     }
 
-    void move()
+    void move(float offsetX)
     {
-
+        position.x += offsetX;
     }
 
     void shootBullets()
@@ -68,17 +74,17 @@ int main()
         //Keyboard Inputs
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-            player.move();
+            player.move(-1.0 * player.getSpeed());
         }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
-            player.move();
+            player.move(1.0 * player.getSpeed());
         }
 
         window.clear(sf::Color::Black);
 
-        player.p_sprite.setPosition(player.p_sprite.getPosition());
+        player.p_sprite.setPosition(player.getPosition());
         window.draw(player.p_sprite);//drawing the player
 
         window.display();

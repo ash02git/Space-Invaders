@@ -1,7 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "e:/Outscal/Space-Invaders/Space-Invaders/Header/GameService.h"
 using namespace std;
 
+/*
 class Player
 {
 private:
@@ -50,9 +52,11 @@ public:
 
     }
 };
+*/
 
 int main()
 {
+    /*
     sf::VideoMode videomode = sf::VideoMode(800, 600);
     sf::RenderWindow window(videomode, "SFML Window");
 
@@ -89,4 +93,13 @@ int main()
 
         window.display();
     }
+    */
+    GameService gs;//object creation for GameService
+    gs.ignite();//started the game
+    if (gs.isRunning())
+    {
+        gs.update();
+        gs.render();
+    }
+    return 0;
 }

@@ -133,10 +133,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Source\newSlnFile.cpp" />
+    <ClCompile Include="Source\GameService.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Header\newHeaderFile.h" />
+    <ClInclude Include="Header\GameService.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
